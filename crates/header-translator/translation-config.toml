@@ -424,6 +424,16 @@ tvos = "9.0"
 watchos = "6.2"
 visionos = "1.0"
 
+[library.UIKit]
+crate = "objc2-ui-kit"
+required-dependencies = ["objc2-foundation"]
+custom-lib-rs = true
+maccatalyst = "13.0"
+ios = "2.0"
+tvos = "9.0"
+watchos = "2.0"
+visionos = "1.0"
+
 [library.UniformTypeIdentifiers]
 crate = "objc2-uniform-type-identifiers"
 required-dependencies = ["objc2-foundation"]
@@ -882,6 +892,8 @@ renamed = "NSFileProviderItemProtocol"
 # Both property and method
 [class.NSDocument.methods."setDisplayName:"]
 skipped = true
+[class.NSDiffableDataSourceSectionSnapshot.methods.items]
+skipped = true
 
 # Duplicated method
 [class.NSSlider.methods.isVertical]
@@ -895,6 +907,10 @@ skipped = true
 [class.MTLRasterizationRateLayerDescriptor.methods.sampleCount]
 skipped = true
 [class.MTLRasterizationRateLayerDescriptor.methods."setSampleCount:"]
+skipped = true
+
+# Duplicated static
+[static.UIKeyInputF1]
 skipped = true
 
 # Uses stuff from different frameworks / system libraries
@@ -1071,6 +1087,9 @@ shadowColor = { skipped = true }
 "setShadowColor:" = { skipped = true }
 shadowPath = { skipped = true }
 "setShadowPath:" = { skipped = true }
+[class.UIView.methods]
+transform = { skipped = true }
+"setTransform:" = { skipped = true }
 [protocol.CALayerDelegate.methods]
 "drawLayer:inContext:" = { skipped = true }
 [class.CAMetalLayer.methods]
@@ -1433,6 +1452,9 @@ skipped = true
 skipped = true
 # Needs mach / kernel types
 [protocol.MTLResource.methods."setOwnerWithIdentity:"]
+skipped = true
+# Needs CFTimeInterval
+[class.UIScreen.methods.calibratedLatency]
 skipped = true
 
 # Uses a pointer to SEL, which doesn't implement Encode yet
