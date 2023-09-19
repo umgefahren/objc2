@@ -20,9 +20,9 @@ pub(crate) use objc2::mutability::{
 #[cfg(feature = "objective-c")]
 pub(crate) use objc2::rc::{Allocated, DefaultId, Id};
 #[cfg(feature = "objective-c")]
-pub(crate) use objc2::runtime::{AnyClass, AnyObject, Bool, Sel};
-#[cfg(feature = "objective-c")]
-pub(crate) use objc2::runtime::{NSObject, NSObjectProtocol, ProtocolObject};
+pub(crate) use objc2::runtime::{
+    AnyClass, AnyObject, AnyProtocol, Bool, NSObject, NSObjectProtocol, ProtocolObject, Sel,
+};
 #[cfg(feature = "objective-c")]
 pub(crate) use objc2::{
     __inner_extern_class, extern_class, extern_methods, extern_protocol, ClassType, Message,
@@ -33,8 +33,6 @@ pub(crate) use objc2::{
 pub(crate) use block2::Block;
 
 // TODO
-#[cfg(feature = "objective-c")]
-pub(crate) type AnyProtocol = AnyObject;
 pub(crate) type TodoFunction = *const c_void;
 #[cfg(feature = "objective-c")]
 pub(crate) type TodoClass = AnyObject;
