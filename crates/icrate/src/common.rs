@@ -36,8 +36,6 @@ pub(crate) use block2::Block;
 pub(crate) type TodoFunction = *const c_void;
 #[cfg(feature = "objective-c")]
 pub(crate) type TodoClass = AnyObject;
-#[cfg(feature = "objective-c")]
-pub(crate) type TodoProtocols = AnyObject;
 
 // MacTypes.h
 pub(crate) type Boolean = u8; // unsigned char

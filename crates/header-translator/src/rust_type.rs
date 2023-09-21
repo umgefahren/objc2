@@ -367,10 +367,20 @@ impl fmt::Display for IdType {
             }
             Self::AnyObject { protocols } => match &**protocols {
                 [] => write!(f, "AnyObject"),
-                [id] if id.is_nsobject() => write!(f, "NSObject"),
-                [id] => write!(f, "ProtocolObject<dyn {}>", id.path()),
-                // TODO: Handle this better
-                _ => write!(f, "TodoProtocols"),
+                protocols => {
+                    write!(f, "ProtocolObject<dyn ")?;
+
+                    let mut iter = protocols.iter();
+                    let protocol = iter.next().unwrap();
+                    write!(f, "{}", protocol.path())?;
+
+                    for protocol in iter {
+                        write!(f, " + {}", protocol.path())?;
+                    }
+
+                    write!(f, ">")?;
+                    Ok(())
+                }
             },
             Self::TypeDef { id, .. } => write!(f, "{}", id.path()),
             Self::GenericParam { name } => write!(f, "{name}"),
