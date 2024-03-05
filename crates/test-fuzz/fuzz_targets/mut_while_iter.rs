@@ -1,9 +1,8 @@
-#![no_main]
+#![cfg_attr(not(feature = "afl"), no_main)]
 use std::mem::replace;
 
 use arbitrary::Arbitrary;
 use icrate::Foundation::{NSMutableArray, NSNull, NSObject, NSObjectProtocol};
-use libfuzzer_sys::fuzz_target;
 use objc2::rc::{autoreleasepool, Id};
 
 /// The operations that the fuzzer can do on an array and the array's iterator.
@@ -61,7 +60,7 @@ impl VecIter {
     }
 }
 
-fuzz_target!(|ops: Vec<Operation>| {
+fn run(ops: Vec<Operation>) {
     let arr: Id<NSMutableArray<NSObject>> = NSMutableArray::new();
     let mut vec: Vec<Id<NSObject>> = Vec::new();
 
@@ -147,4 +146,14 @@ fuzz_target!(|ops: Vec<Operation>| {
             }
         });
     }
-});
+}
+
+#[cfg(not(feature = "afl"))]
+libfuzzer_sys::fuzz_target!(|ops: Vec<Operation>| run(ops));
+
+#[cfg(feature = "afl")]
+fn main() {
+    afl::fuzz!(|ops: Vec<Operation>| {
+        run(ops);
+    });
+}
