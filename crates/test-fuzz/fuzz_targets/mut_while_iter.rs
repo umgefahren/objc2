@@ -60,6 +60,10 @@ impl VecIter {
     }
 }
 
+fn retain_count(obj: &NSObject) -> usize {
+    unsafe { objc2::msg_send![obj, retainCount] }
+}
+
 fn run(ops: Vec<Operation>) {
     let arr: Id<NSMutableArray<NSObject>> = NSMutableArray::new();
     let mut vec: Vec<Id<NSObject>> = Vec::new();
@@ -134,9 +138,11 @@ fn run(ops: Vec<Operation>) {
                     }
                     (Some(arr_s), Some(vec_s)) => {
                         assert_eq!(arr_s, vec_s);
+                        assert_eq!(retain_count(arr_s), 2);
                     }
-                    (None, Some(_)) => {
+                    (None, Some(vec_s)) => {
                         assert!(vec_iter.invalid, "vec contained item, array did not");
+                        assert_eq!(retain_count(vec_s), 2);
                     }
                     (Some(_), None) => {
                         panic!("array contained item, vec did not");
