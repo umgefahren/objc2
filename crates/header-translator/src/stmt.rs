@@ -1983,6 +1983,14 @@ impl Stmt {
                         }
                         write!(f, "IsMainThreadOnly")?;
                     }
+                    if id.library() == "Metal" {
+                        if protocols.is_empty() {
+                            write!(f, ": ")?;
+                        } else {
+                            write!(f, "+ ")?;
+                        }
+                        write!(f, "IsRetainable")?;
+                    }
                     writeln!(f, " {{")?;
 
                     let required_items = self.required_items();
