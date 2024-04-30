@@ -123,6 +123,16 @@ ios = "9.0"
 watchos = "2.0"
 visionos = "1.0"
 
+[library.CoreBluetooth]
+crate = "objc2-core-bluetooth"
+required-dependencies = ["objc2-foundation"]
+macos = "10.10"
+maccatalyst = "13.0"
+ios = "5.0"
+tvos = "9.0"
+watchos = "4.0"
+visionos = "1.0"
+
 [library.CoreData]
 crate = "objc2-core-data"
 required-dependencies = ["objc2-foundation"]
