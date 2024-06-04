@@ -90,12 +90,12 @@ fn main() -> Result<(), BoxError> {
         // These are found using the `get_llvm_targets.fish` helper script
         let llvm_targets: &[_] = match &sdk.platform {
             Platform::MacOsX => &[
-                "x86_64-apple-macosx10.12.0",
-                // "arm64-apple-macosx11.0.0",
+                // "x86_64-apple-macosx10.12.0",
+                "arm64-apple-macosx11.0.0",
                 // "i686-apple-macosx10.12.0",
             ],
             Platform::IPhoneOs => &[
-                // "arm64-apple-ios10.0.0",
+                "arm64-apple-ios10.0.0",
                 // "armv7s-apple-ios10.0.0",
                 // "arm64-apple-ios14.0-macabi",
                 // "x86_64-apple-ios13.0-macabi",

@@ -45,7 +45,6 @@ alloc = ["objc2/alloc"]
 # For better documentation on docs.rs
 unstable-docsrs = []
 
-MTLFXDefines = []
 MTLFXSpatialScaler = [
     "objc2-foundation/NSObject",
     "objc2-metal/MTLCommandBuffer",
@@ -65,7 +64,6 @@ MTLFXTemporalScaler = [
     "objc2-metal/MTLTexture",
 ]
 all = [
-    "MTLFXDefines",
     "MTLFXSpatialScaler",
     "MTLFXTemporalScaler",
 ]

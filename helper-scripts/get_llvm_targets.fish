@@ -3,5 +3,5 @@ set APPLE_TARGETS x86_64-apple-darwin aarch64-apple-darwin aarch64-apple-ios aar
 for TARGET in $APPLE_TARGETS
     echo ""
     echo "$TARGET"
-    rustc +nightly --print target-spec-json --target=$TARGET | jq '.["llvm-target"]'
+    rustc +nightly --print target-spec-json -Z unstable-options --target=$TARGET | jq '.["llvm-target"]'
 end

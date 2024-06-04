@@ -55,4 +55,5 @@ data! {
     mod UniformTypeIdentifiers;
     mod UserNotifications;
     mod WebKit;
+    mod MultipeerConnectivity;
 }

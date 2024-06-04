@@ -100,3 +100,5 @@
 #import <UserNotifications/UserNotifications.h>
 
 #import <WebKit/WebKit.h>
+
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
